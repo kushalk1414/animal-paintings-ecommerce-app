@@ -1,1 +1,22 @@
-<p>product-list works!</p>
+<h3 class="mt-5 mb-3">Product List</h3>
+
+<ng-template #noProducts>
+  <p>No products available.</p>
+</ng-template>
+
+<mat-grid-list cols="5" rowHeight="1:1" gutterSize="10px">
+  <mat-grid-tile *ngFor="let product of products">
+    <mat-card class="product-card" appearance="outlined" style="width:200px" (click)="addToCart(product)" >
+      <img
+        mat-card-image
+        [src]="'assets/images/' + product.image_url"
+        alt="{{ product.name }}"
+        style="width: 100%; height: auto;"
+      />
+      <mat-card-content>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle>{{ product.price | currency:'USD' }}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
