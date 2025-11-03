@@ -1,8 +1,21 @@
 <h3 class="mt-5 mb-3">Product List</h3>
+<div class="searchElements">
 
-<ng-template #noProducts>
-  <p>No products available.</p>
-</ng-template>
+  <mat-form-field class="searchBar" >
+    <input matInput (keyup)="applySearchFilter($event)"placeholder="Search products">
+  </mat-form-field>
+  
+  <ng-template #noProducts>
+    <p>No products available.</p>
+  </ng-template>
+  
+  <mat-form-field class="sort-dropdown">
+          <mat-select (selectionChange)="sortProducts($event.value)" placeholder="Sort">
+              <mat-option value="priceHighLow">Price: High to Low</mat-option>
+              <mat-option value="priceLowHigh">Price: Low to High</mat-option>
+          </mat-select>
+      </mat-form-field>
+</div>
 
 <mat-grid-list cols="5" rowHeight="1:1" gutterSize="10px">
   <mat-grid-tile *ngFor="let product of products">
